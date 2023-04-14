@@ -1,37 +1,14 @@
-# Samba Server Container
+# 测试协议：cifs
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/joebiellik/samba-server.svg)](https://hub.docker.com/r/joebiellik/samba-server/)
-[![Docker Stars](https://img.shields.io/docker/stars/joebiellik/samba-server.svg)](https://hub.docker.com/r/joebiellik/samba-server/)
-[![Docker Build](https://img.shields.io/docker/cloud/automated/joebiellik/samba-server.svg)](https://hub.docker.com/r/joebiellik/samba-server/)
-[![Docker Build Status](https://img.shields.io/docker/cloud/build/joebiellik/samba-server.svg)](https://hub.docker.com/r/joebiellik/samba-server/)
+# 拉取镜像
+docker pull joebiellik/samba-server
 
-[Samba 4](https://www.samba.org/) server running under [s6 overlay](https://github.com/just-containers/s6-overlay) on [Alpine Linux](https://hub.docker.com/_/alpine/). Runs both `smbd` and `nmbd` services.
+# 启动
+docker-compose up
 
-## Configuration
+# wingfuzz中参数填写
 
-See [example directory](https://github.com/jcbiellikltd/docker-samba-server/tree/master/example) for sample config file.
-
-## Quickstart
-
-```yml
-samba:
-  image: joebiellik/samba-server
-
-  volumes:
-    # You must provide a Samba config file
-    - ./smb.conf:/etc/samba/smb.conf
-
-    # Shares
-    - ~/projects:/mnt/projects
-    - ~/videos:/mnt/videos:ro
-
-  ports:
-    - "137:137/udp"
-    - "138:138/udp"
-    - "139:139/tcp"
-    - "445:445/tcp"
-
-  environment:
-    - USERNAME=joe
-    - PASSWORD=samba
-```
+主机名：0.0.0.0
+端口：445
+共享文件夹用户名：joe
+共享文件夹密码：samba
